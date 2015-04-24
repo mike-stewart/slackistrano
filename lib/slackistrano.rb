@@ -9,11 +9,11 @@ module Slackistrano
   #
   #
   #
-  def self.post(team: nil, token: nil, webhook: nil, via_slackbot: false, payload: {})
+  def self.post(team = nil, token = nil, webhook = nil, via_slackbot = false, payload = {})
     if via_slackbot
-      post_as_slackbot(team: team, token: token, webhook: webhook, payload: payload)
+      post_as_slackbot(team, token, webhook, payload)
     else
-      post_as_webhook(team: team, token: token, webhook: webhook, payload: payload)
+      post_as_webhook(team, token, webhook, payload)
     end
   rescue => e
     puts "There was an error notifying Slack."
@@ -23,7 +23,7 @@ module Slackistrano
   #
   #
   #
-  def self.post_as_slackbot(team: nil, token: nil, webhook: nil, payload: {})
+  def self.post_as_slackbot(team = nil, token = nil, webhook = nil, payload = {})
     uri = URI(URI.encode("https://#{team}.slack.com/services/hooks/slackbot?token=#{token}&channel=#{payload[:channel]}"))
 
     text = payload[:attachments].collect { |a| a[:text] }.join("\n")
@@ -36,7 +36,7 @@ module Slackistrano
   #
   #
   #
-  def self.post_as_webhook(team: nil, token: nil, webhook: nil, payload: {})
+  def self.post_as_webhook(team = nil, token = nil, webhook = nil, payload = {})
     params = {'payload' => payload.to_json}
 
     if webhook.nil?

@@ -14,11 +14,11 @@ namespace :slack do
       if fetch(:slack_run_starting)
         run_locally do
           Slackistrano.post(
-            team: fetch(:slack_team),
-            token: fetch(:slack_token),
-            webhook: fetch(:slack_webhook),
-            via_slackbot: fetch(:slack_via_slackbot),
-            payload: {
+            fetch(:slack_team),
+            fetch(:slack_token),
+            fetch(:slack_webhook),
+            fetch(:slack_via_slackbot),
+            {
               channel: fetch(:slack_channel_starting) || fetch(:slack_channel),
               username: fetch(:slack_username),
               icon_url: fetch(:slack_icon_url),
@@ -34,11 +34,11 @@ namespace :slack do
       if fetch(:slack_run_finished)
         run_locally do
           Slackistrano.post(
-            team: fetch(:slack_team),
-            token: fetch(:slack_token),
-            webhook: fetch(:slack_webhook),
-            via_slackbot: fetch(:slack_via_slackbot),
-            payload: {
+            fetch(:slack_team),
+            fetch(:slack_token),
+            fetch(:slack_webhook),
+            fetch(:slack_via_slackbot),
+            {
               channel: fetch(:slack_channel_finished) || fetch(:slack_channel),
               username: fetch(:slack_username),
               icon_url: fetch(:slack_icon_url),
@@ -54,11 +54,11 @@ namespace :slack do
       if fetch(:slack_run_failed)
         run_locally do
           Slackistrano.post(
-            team: fetch(:slack_team),
-            token: fetch(:slack_token),
-            webhook: fetch(:slack_webhook),
-            via_slackbot: fetch(:slack_via_slackbot),
-            payload: {
+            fetch(:slack_team),
+            fetch(:slack_token),
+            fetch(:slack_webhook),
+            fetch(:slack_via_slackbot),
+            {
               channel: fetch(:slack_channel_failed) || fetch(:slack_channel),
               username: fetch(:slack_username),
               icon_url: fetch(:slack_icon_url),
